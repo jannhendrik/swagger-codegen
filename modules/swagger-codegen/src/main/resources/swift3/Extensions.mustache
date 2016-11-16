@@ -87,7 +87,7 @@ extension UUID: JSONEncodable {
 {{#usePromiseKit}}extension RequestBuilder {
     public func execute() -> Promise<Response<T>>  {
         let deferred = Promise<Response<T>>.pending()
-        self.execute { (response: Response<T>?, error: Error?) in
+        self.execute { (response: Response<T>?, error: ErrorResponse?) in
             if let response = response {
                 deferred.fulfill(response)
             } else {
