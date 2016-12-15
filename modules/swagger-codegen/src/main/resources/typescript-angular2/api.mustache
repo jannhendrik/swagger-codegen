@@ -41,7 +41,7 @@ export class {{classname}} {
      * @param objA object to be extended
      * @param objB source object
      */
-    private extendObj<T1,T2>(objA: T1, objB: T2) {
+    private extendObj<T1,T2>(objA: any, objB: any) {
         for(let key in objB){
             if(objB.hasOwnProperty(key)){
                 (objA as any)[key] = (objB as any)[key];
