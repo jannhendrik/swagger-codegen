@@ -34,21 +34,21 @@ export class {{classname}} {
             this.configuration = configuration;
         }
     }
-	
+
 	/**
-     * 
+     *
      * Extends object by coping non-existing properties.
      * @param objA object to be extended
      * @param objB source object
      */
-    private extendObj<T1,T2>(objA: T1, objB: T2) {
+     private extendObj<T1,T2>(objA: any, objB: any) {
         for(let key in objB){
             if(objB.hasOwnProperty(key)){
                 objA[key] = objB[key];
             }
         }
         return <T1&T2>objA;
-    }
+     }
 
 {{#operation}}
     /**
@@ -116,7 +116,7 @@ export class {{classname}} {
             '{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}
             {{/produces}}
         ];
-        
+
 {{#authMethods}}
         // authentication ({{name}}) required
 {{#isApiKey}}
@@ -148,7 +148,7 @@ export class {{classname}} {
         }
 {{/isOAuth}}
 {{/authMethods}}
-            
+
 {{#hasFormParams}}
         headers.set('Content-Type', 'application/x-www-form-urlencoded');
 {{/hasFormParams}}
@@ -159,7 +159,7 @@ export class {{classname}} {
 
 {{#formParams}}
         if ({{paramName}} !== undefined) {
-            formParams.set('{{baseName}}', <any>{{paramName}}); 
+            formParams.set('{{baseName}}', <any>{{paramName}});
         }
 {{/formParams}}
 
@@ -174,7 +174,7 @@ export class {{classname}} {
 {{/hasFormParams}}
             search: queryParameters
         });
-        
+
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = this.extendObj(requestOptions, extraHttpRequestParams);
